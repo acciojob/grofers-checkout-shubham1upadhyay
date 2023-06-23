@@ -3,33 +3,26 @@ getSumBtn.append("Get Total Price");
 document.body.appendChild(getSumBtn);
 
 const getSum = () => {
-//Add your code here
-	let price = [];
-
-  let a = document.querySelectorAll(".price");
-  // price.push(a[1].innerText);
-
-  for(let i=0; i<a.length; i++){
-    price.push(a[i].innerText);
-  }
-  let ans = 0;
-  for(let i=0; i<a.length; i++)
-  {
-    ans += parseInt(price[i]);
-  }
-  console.log(ans)
-
- let lr = document.createElement("tr");
-
-  let lc = `
-    <td class="total">Total</td>
-    <td class="total">${ans}</td>
-   `;
-   lr.innerHTML = lc;
-   let t = document.getElementById("myTable");
-   t.append(lr)
-
-   getSumBtn.classList.add("hide")
+  getSumBtn.disabled = true;
+  const prices = document.querySelectorAll(".price");
+  let totalPrice = 0;
+  prices.forEach((price) => {
+    const value = parseInt(price.textContent);
+    if (!Number.isNaN(value)) {
+      totalPrice += value;
+    }
+  });
+  const totalPriceRow = document.createElement("tr");
+  totalPriceRow.id = "ans";
+  const totalPriceData = document.createElement("td");
+  const totalPriceAns = document.createElement("td");
+  totalPriceRow.appendChild(totalPriceData);
+  totalPriceRow.appendChild(totalPriceAns);
+  const data = `Total Price (in Rs): `;
+  totalPriceData.append(data);
+  totalPriceAns.append(`${totalPrice}`);
+  const table = document.querySelector("tbody");
+  table.appendChild(totalPriceRow);
 };
 
 getSumBtn.addEventListener("click", getSum);
