@@ -12,18 +12,18 @@ const getSum = () => {
   for(let i=0; i<a.length; i++){
     price.push(a[i].innerText);
   }
-  let total = 0;
+  let ans = 0;
   for(let i=0; i<a.length; i++)
   {
-    total += parseInt(price[i]);
+    ans += parseInt(price[i]);
   }
-  console.log(total)
+  console.log(ans)
 
  let lr = document.createElement("tr");
 
   let lc = `
-    <td>Total</td>
-    <td>${total}</td>
+    <td class="total">Total</td>
+    <td class="total">${ans}</td>
    `;
    lr.innerHTML = lc;
    let t = document.getElementById("myTable");
